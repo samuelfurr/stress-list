@@ -1,19 +1,29 @@
 # stress-list
 
-To set up a virtualenv:
+IIT CS487: Software Engineering
 
-$> virtualenv
+Rachel Brooks,
+Samuel Furr,
+Nathan Cooper Jones,
+Morgan Peters,
+Divya Soopal,
+
+## To set up a virtualenv:
+
+    $> virtualenv
 
 Then cd into the virtualenv folder, and clone the project from github into the folder. In the upper level of the virtualenv folder, type:
 
-$> source bin/activate
+    $> source bin/activate
 
-Then cd into the repo folder, and type:
 
-$> pip install -r requirements.txt
+## To run the Flask: 
+    
+    cd stress-list                      # folder with stress.py
+    pip install -r requirements.txt     # install requirements 
+    export FLASK_APP=stress.py          # set flask app to stress.py 
+    flask run                           # run flask 
 
-Last but not least, in the same directory as stress.py, run:
+## Prototype UI
 
-export FLASK_APP=stress.py
-
-Type flask run to run the app
+    https://xd.adobe.com/view/221bf6f1-9368-439a-63a2-33161c350cd9-542a/
