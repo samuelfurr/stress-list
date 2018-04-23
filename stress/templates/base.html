@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
+{% if not current_user.is_anonymous %}
+<a href="{{ url_for('logout') }}">Logout {{ current_user.username }}</a>
+{% endif %}
 <div class="container">
   {% with messages = get_flashed_messages() %}
   {% if messages %}

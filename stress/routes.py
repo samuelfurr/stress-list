@@ -8,15 +8,10 @@ from stress.forms import LoginForm, RegistrationForm
 from stress.models import *
 
 @stress.route('/')
-@stress.route('/index')
-def index():
-    return render_template('index.html', title='Home')
-
-
 @stress.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('cal', username=current_user.username))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.objects(username=form.username.data).first()
@@ -26,19 +21,19 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            return redirect(url_for('user/<username>/cal', username=current_user.username))
+            return redirect(url_for('cal', username=current_user.username))
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
 @stress.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 @stress.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('cal', username=current_user.username))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data)
